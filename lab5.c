@@ -1,50 +1,59 @@
-#include <stdio.h>
-#include <math.h>
+#include<stdio.h>
+#include<stdbool.h>
+#include<math.h>
 
 int main(){
-    double x, y, a, b, c;
+    int sum = 0; // Сума послідовності
+    int n; // Елемент послідовності
 
-    printf("Enter x: ");
-    scanf("%lf", &x);
+    int m = 100; // Початок діапазону значень
+    bool is_prime; // Змінна для перерівки чи є число простим
 
-    //Варіант 1
-    a = 0.1, b = 9.8, c = 11.12;
-    if (log(a) < x){
-        y = pow(pow(b,2) + sqrt(fabs(x+c)) ,(1/3));
+    // Підзадача 1
+    printf("Послідовність значень 3*m + 5 кратних 4 (діапазон значень m - [100;400]):\n");
+    for (;m<=400;m++){
+        n = 3*m+5;
+        if (n % 4 == 0){
+            printf("%i ",n);
+            sum += n;
+        }
     }
-    else if(log(a) == x){
-        y = cos(x-b-c);
-    }
-    else{
-        y = sin(x+a-b);
-    }
-    printf("y(%lf) = %lf\n", x, y);
+    printf("\nСума значень = %i\n\n", sum);
+    
+    // Підзадача 2
+    m = 100;
+    printf("Прості числа в діапазоні [100; 400]:\n");
+    do{
+        is_prime = true;
+        for (int i = 2; i*i <= m; i++){
+            if(m%i == 0){
+                is_prime = false;
+                break;
+            }
+        }
+        if (is_prime) {
+            printf("%i ", m);
+        }
+        m++;
+    } while(m<400);
 
-    //Варіант 2
-    a = 10, b = 10.05, c = 6.2;
-    if (log(a) < x){
-        y = pow(pow(b,2) + sqrt(fabs(x+c)) ,(1/3));
+    // Підзадача 3
+    int a = 1, b, c;
+    int found = 0;
+    printf("\n\nПошук коренів р-ня 2*a + 5*c^2 - 11*b == 0:\n");
+    while (!found) {
+        b = 1;
+        while (b <= 100 && !found) {
+            c = 1;
+            while (c <= 100 && !found) {
+                if ((2 * a + 5 * pow(c,2) - 11 * b) == 0) {
+                    printf("Знайдено корені: a = %d, b = %d, c = %d\n", a, b, c);
+                    found = 1;
+                }
+                c++;
+            }
+            b++;
+        }
+        a++;
     }
-    else if(log(a) == x){
-        y = cos(x-b-c);
-    }
-    else{
-        y = sin(x+a-b);
-    }
-    printf("y(%lf) = %lf\n", x, y);
-
-    //Варіант 3
-    a = 100, b = 3.03, c = 7.12;
-    if (log(a) < x){
-        y = pow(pow(b,2) + sqrt(fabs(x+c)) ,(1/3));
-    }
-    else if(log(a) == x){
-        y = cos(x-b-c);
-    }
-    else{
-        y = sin(x+a-b);
-    }
-    printf("y(%lf) = %lf\n", x, y);
-
-    return 0;
 }
