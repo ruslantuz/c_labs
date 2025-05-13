@@ -65,7 +65,7 @@ int main() {
             output_arr[i] = input_arr[max_start + i];
         }
 
-        printf("Максимальна безперервна підпослідовність позитивних чисел із сумою %d:\n", max_sum);
+        printf("Максимальна безперервна послідовність позитивних чисел із сумою %d:\n", max_sum);
         for (int i = 0; i < max_length; i++) {
             printf("%d ", output_arr[i]);
         }
